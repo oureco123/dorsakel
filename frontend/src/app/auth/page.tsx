@@ -2,6 +2,6 @@
 
 import Dorsakel from '@/components/Dorsakel';
 
-export default function HomePage() {
+export default function AuthPage() {
   return <Dorsakel />;
 }

@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   description: "Professional dental education platform with interactive learning materials, quizzes, and 3D models",
   keywords: 'dental education, dentistry learning, dental training, medical education',
   authors: [{ name: 'Dorsakel' }],
-  viewport: 'width=device-width, initial-scale=1',
 };
 
 export default function RootLayout({

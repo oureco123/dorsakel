@@ -1,9 +1,12 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+
+// Import routes
+import authRoutes from './routes/auth';
 
 // Load environment variables
 dotenv.config();
@@ -19,7 +22,7 @@ export const prisma = new PrismaClient();
 app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://dorsakel.com' 
+    ? ['https://dorsakel.com', 'https://www.dorsakel.com']
     : 'http://localhost:3000',
   credentials: true
 }));
@@ -28,20 +31,22 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
 // API Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/users', require('./routes/users'));
-app.use('/api/content', require('./routes/content'));
-app.use('/api/quiz', require('./routes/quiz'));
-app.use('/api/subscription', require('./routes/subscription'));
-app.use('/api/admin', require('./routes/admin'));
+app.use('/auth', authRoutes);
+
+// TODO: Add other routes
+// app.use('/users', userRoutes);
+// app.use('/content', contentRoutes);
+// app.use('/quiz', quizRoutes);
+// app.use('/subscription', subscriptionRoutes);
+// app.use('/admin', adminRoutes);
 
 // Global error handler
-app.use((err: any, req: any, res: any, next: any) => {
+app.use((err: any, req: Request, res: Response, next: express.NextFunction) => {
   console.error(err.stack);
   res.status(500).json({ 
     error: 'Something went wrong!',

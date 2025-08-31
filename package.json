@@ -15,6 +15,3 @@
     "concurrently": "^8.2.2"
   }
 }
-
-# Install concurrently for running both servers
-npm install

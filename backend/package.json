@@ -1,0 +1,19 @@
+{
+  "name": "dental-platform-backend",
+  "version": "1.0.0",
+  "description": "Backend for dental learning platform",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:seed": "ts-node prisma/seed.ts"
+  },
+  "keywords": ["dental", "learning", "platform"],
+  "author": "Your Name",
+  "license": "MIT"
+}

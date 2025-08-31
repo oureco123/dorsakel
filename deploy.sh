@@ -12,4 +12,4 @@ git commit -m "$1"
 git push origin main
 
 # SSH into VPS and pull the latest code
-ssh dorsakel@92.119.124.79 "cd /home/dorsakel/dorsakel && ./deploy.sh"
+ssh dorsakel@92.119.124.79 "/home/dorsakel/deploy.sh"

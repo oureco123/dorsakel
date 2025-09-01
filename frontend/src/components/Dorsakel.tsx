@@ -51,7 +51,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   // Use your domain for API calls
-  const API_URL = 'https://dorsakel.com/api';
+  const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://dorsakel.com/api' 
+  : 'http://localhost:5005';
 
   useEffect(() => {
     // Check for stored token on mount

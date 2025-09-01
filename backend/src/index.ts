@@ -23,8 +23,10 @@ app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://dorsakel.com', 'https://www.dorsakel.com']
-    : 'http://localhost:3000',
-  credentials: true
+    : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
@@ -60,10 +62,16 @@ async function startServer() {
     await prisma.$connect();
     console.log('✅ Connected to database');
     
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📊 Health check: http://localhost:${PORT}/health`);
     });
+
+    // Add this error handler
+    server.on('error', (error) => {
+      console.error('Server error:', error);
+    });
+
   } catch (error) {
     console.error('❌ Failed to start server:', error);
     process.exit(1);

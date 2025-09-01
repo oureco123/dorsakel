@@ -1,7 +1,7 @@
 'use client';
 
-import Dorsakel from '@/components/Dorsakel';
+import Homepage from '@/components/homepage/Homepage';
 
 export default function HomePage() {
-  return <Dorsakel />;
+  return <Homepage />;
 }

@@ -64,7 +64,7 @@ const Navbar = ({ user = null, onLogin, onLogout }: NavbarProps) => {
               />
             </div>
             <span className={`text-xl font-bold transition-colors ${
-              isScrolled ? 'text-gray-900' : 'text-black'
+              isScrolled ? 'text-gray-900' : 'text-white'
             }`}>
               Dorsakel
             </span>
@@ -76,8 +76,8 @@ const Navbar = ({ user = null, onLogin, onLogout }: NavbarProps) => {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
-                  isScrolled ? 'text-gray-700' : 'text-black'
+                className={`text-sm font-medium transition-color ${
+                  isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white/90 hover:text-black'
                 }`}
               >
                 {item.name}
@@ -103,9 +103,6 @@ const Navbar = ({ user = null, onLogin, onLogout }: NavbarProps) => {
                   <div className="text-left">
                     <div className="text-sm font-medium">
                       {user.firstName} {user.lastName}
-                    </div>
-                    <div className={`text-xs px-2 py-1 rounded-full ${getSubscriptionBadge(user.subscriptionType)}`}>
-                      {user.subscriptionType}
                     </div>
                   </div>
                   <ChevronDown className="w-4 h-4" />
@@ -151,7 +148,7 @@ const Navbar = ({ user = null, onLogin, onLogout }: NavbarProps) => {
                   className={`transition-colors ${
                     isScrolled 
                       ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100' 
-                      : 'text-black hover:text-black hover:bg-white/10'
+                      : 'text-white hover:text-white hover:bg-white/10'
                   }`}
                 >
                   Sign In
@@ -173,7 +170,7 @@ const Navbar = ({ user = null, onLogin, onLogout }: NavbarProps) => {
               className={`p-2 rounded-lg transition-colors ${
                 isScrolled 
                   ? 'text-gray-700 hover:bg-gray-100' 
-                  : 'text-black hover:bg-white/10'
+                  : 'text-white hover:bg-white/10'
               }`}
             >
               {isMobileMenuOpen ? (

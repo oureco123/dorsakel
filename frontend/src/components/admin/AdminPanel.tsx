@@ -51,7 +51,7 @@ interface User {
 }
 const API_BASE = process.env.NODE_ENV === 'production' 
   ? 'https://dorsakel.com/api/admin' 
-  : 'http://localhost:5005/admin';
+  : 'http://localhost:5000/admin';
 // Admin Authentication Hook
 const useAdminAuth = () => {
   const [isAdmin, setIsAdmin] = useState(false);

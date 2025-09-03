@@ -5,6 +5,8 @@ export interface AuthRequest extends Request {
   user?: any;
 }
 
+
+
 export const authMiddleware = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '');
@@ -27,10 +29,15 @@ export const authMiddleware = async (req: AuthRequest, res: Response, next: Next
 
 export const adminMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
   if (req.user?.role !== 'ADMIN' && req.user?.role !== 'SUPER_ADMIN') {
-    return res.status(403).json({ error: 'Access denied. Admin rights required.' });
+    return res.status(403).json({ 
+      error: 'Access denied. Admin rights required.',
+      requiredRole: ['ADMIN', 'SUPER_ADMIN'],
+      userRole: req.user?.role 
+    });
   }
   next();
 };
+
 
 export const subscriptionMiddleware = (requiredLevel: string) => {
   return (req: AuthRequest, res: Response, next: NextFunction) => {

@@ -12,6 +12,7 @@ interface LayoutWrapperProps {
     firstName: string;
     lastName: string;
     subscriptionType: 'FREE' | 'PRO' | 'PREMIUM';
+    role: 'USER' | 'ADMIN' | 'SUPER_ADMIN';
   } | null;
   onLogin?: () => void;
   onLogout?: () => void;
@@ -29,8 +30,8 @@ const LayoutWrapper = ({
     <div className="min-h-screen flex flex-col">
       {showNavbar && (
         <Navbar 
-          user={user} 
-          onLogin={onLogin} 
+          user={user}
+          onLogin={onLogin}
           onLogout={onLogout} 
         />
       )}

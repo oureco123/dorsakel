@@ -7,7 +7,10 @@ import { PrismaClient } from '@prisma/client';
 
 // Import routes
 import authRoutes from './routes/auth';
+import adminRoutes from './routes/admin';
 
+console.log('Auth routes imported:', authRoutes); // Add this line
+console.log('Admin routes imported:', adminRoutes); // Add this line
 // Load environment variables
 dotenv.config();
 
@@ -32,6 +35,7 @@ app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+
 // Health check endpoint
 app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
@@ -39,6 +43,7 @@ app.get('/health', (req: Request, res: Response) => {
 
 // API Routes
 app.use('/auth', authRoutes);
+app.use('/admin', adminRoutes);
 
 // TODO: Add other routes
 // app.use('/users', userRoutes);

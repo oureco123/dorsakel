@@ -7,6 +7,19 @@ const { body, validationResult } = require('express-validator');
 
 const router = express.Router();
 
+// Show available auth endpoints
+router.get('/', (req: Request, res: Response) => {
+  res.json({
+    message: 'Auth API endpoints',
+    endpoints: [
+      { method: 'POST', path: '/auth/register', description: 'Register new user' },
+      { method: 'POST', path: '/auth/login', description: 'User login' },
+      { method: 'GET', path: '/auth/me', description: 'Get current user (requires auth)' },
+      { method: 'POST', path: '/auth/logout', description: 'Logout (requires auth)' }
+    ]
+  });
+});
+
 // Register endpoint
 router.post('/register', [
   body('email').isEmail().normalizeEmail(),
@@ -91,4 +104,4 @@ router.post('/logout', authMiddleware, async (req: AuthRequest, res: Response) =
   res.json({ message: 'Logged out successfully' });
 });
 
-export = router;
+export default router;

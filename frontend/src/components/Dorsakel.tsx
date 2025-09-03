@@ -99,32 +99,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const login = async (email: string, password: string) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`${API_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
+  // In Dorsakel.tsx - UPDATE YOUR LOGIN FUNCTION:
+const login = async (email: string, password: string) => {
+  setLoading(true);
+  try {
+    console.log('Making login request to:', `${API_URL}/auth/login`);
+    
+    const response = await fetch(`${API_URL}/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
 
-      const data = await response.json();
+    console.log('Response status:', response.status);
+    
+    const data = await response.json();
+    console.log('Response data:', data);
 
-      if (response.ok) {
-        setToken(data.token);
-        setUser(data.user);
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('dorsakel_token', data.token);
-        }
-      } else {
-        throw new Error(data.error || 'Login failed');
-      }
-    } finally {
-      setLoading(false);
+    if (!response.ok) {
+      throw new Error(data.error || `Login failed (${response.status})`);
     }
-  };
+
+    setToken(data.token);
+    setUser(data.user);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('dorsakel_token', data.token);
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    throw new Error(error instanceof Error ? error.message : 'Login failed');
+  } finally {
+    setLoading(false);
+  }
+};
 
   const register = async (email: string, password: string, firstName: string, lastName: string) => {
     setLoading(true);

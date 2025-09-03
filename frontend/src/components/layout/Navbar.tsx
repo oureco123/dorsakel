@@ -10,6 +10,7 @@ interface NavbarProps {
     firstName: string;
     lastName: string;
     subscriptionType: 'FREE' | 'PRO' | 'PREMIUM';
+    role: 'USER' | 'ADMIN' | 'SUPER_ADMIN';
   } | null;
   onLogin?: () => void;
   onLogout?: () => void;
@@ -134,6 +135,14 @@ const Navbar = ({ user = null, onLogin, onLogout }: NavbarProps) => {
                       onClick={onLogout}
                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
                     >
+                      {user.role === 'ADMIN' || user.role === 'SUPER_ADMIN' ? (
+                    <Link 
+                      href="/admin"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                    >
+                      Admin Panel
+                    </Link>
+                  ) : null}
                       <LogOut className="w-4 h-4" />
                       Sign Out
                     </button>

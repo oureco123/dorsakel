@@ -23,6 +23,8 @@ const HeroSection = () => {
           src="/images/dental-hearo-bg.png" 
           alt="bg"
           className="w-full h-full object-cover"
+          width="2000"
+          height="1000"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-800/60 to-slate-900/70"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -81,6 +83,8 @@ const HeroSection = () => {
                   src="/images/dorsakel_smiley.png" 
                   alt="Dorsakel Logo" 
                   className="w-48 h-48 object-contain filter brightness-110"
+                  width="200"
+                  height="150"
                 />
               </div>
               <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-400 rounded-full animate-pulse"></div>

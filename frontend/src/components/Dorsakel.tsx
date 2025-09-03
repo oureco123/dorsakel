@@ -53,23 +53,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Use your domain for API calls
   const API_URL = process.env.NODE_ENV === 'production' 
   ? 'https://dorsakel.com/api' 
-  : 'http://localhost:5000';
+  : 'http://localhost:5005';
 
   
 
   const getCurrentUser = async (authToken: string) => {
     try {
+      console.log('Fetching current user with token:', authToken.substring(0, 20) + '...');
+      
       const response = await fetch(`${API_URL}/auth/me`, {
         headers: {
           'Authorization': `Bearer ${authToken}`,
           'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include' // Important for cookies if using them
       });
-
+  
+      console.log('Auth me response status:', response.status);
+  
       if (response.ok) {
         const data = await response.json();
+        console.log('User data received:', data.user.email);
         setUser(data.user);
       } else {
+        console.error('Auth me failed:', response.status, response.statusText);
         if (typeof window !== 'undefined') {
           localStorage.removeItem('dorsakel_token');
         }
@@ -98,7 +105,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else {
       setLoading(false);
     }
-  }, [getCurrentUser]); // Add getCurrentUser to dependencies
+  }, []); // Add getCurrentUser to dependencies
 
   // In Dorsakel.tsx - UPDATE YOUR LOGIN FUNCTION:
 const login = async (email: string, password: string) => {

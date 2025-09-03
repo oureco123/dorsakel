@@ -62,6 +62,8 @@ const Navbar = ({ user = null, onLogin, onLogout }: NavbarProps) => {
                 src="/images/logo.png" 
                 alt="Dorsakel Logo" 
                 className="w-full h-full object-contain"
+                width="200"
+                height="200"
               />
             </div>
             <span className={`text-xl font-bold transition-colors ${

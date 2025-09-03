@@ -87,6 +87,8 @@ const Footer = () => {
                 <Image 
                   src="/images/logo.png" 
                   alt="Dorsakel Logo" 
+                  width="100"
+                  height="75"
                   className="w-full h-full object-contain filter brightness-110"
                 />
               </div>

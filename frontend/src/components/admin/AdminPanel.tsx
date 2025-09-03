@@ -303,7 +303,7 @@ const UserManagement = () => {
 
   useEffect(() => {
     fetchUsers(currentPage, searchTerm);
-  }, [currentPage, searchTerm, fetchUsers]);
+  }, [currentPage]);
 
   const handleSearch = () => {
     setCurrentPage(1);

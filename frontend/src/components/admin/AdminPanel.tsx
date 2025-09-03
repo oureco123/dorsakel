@@ -10,8 +10,7 @@ import {
   UserPlus, 
   Crown, 
   Euro, 
-  TrendingUp, 
-  Calendar,
+  TrendingUp,
   Search,
   Filter,
   Download,
@@ -304,7 +303,7 @@ const UserManagement = () => {
 
   useEffect(() => {
     fetchUsers(currentPage, searchTerm);
-  }, [currentPage]);
+  }, [currentPage, searchTerm, fetchUsers]);
 
   const handleSearch = () => {
     setCurrentPage(1);
@@ -418,7 +417,7 @@ const UserManagement = () => {
 const AdminDashboard = () => {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [_activeTab, _setActiveTab] = useState('dashboard');
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -512,7 +511,7 @@ const AdminPanel = () => {
           <CardContent className="p-8 text-center">
             <Shield className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-gray-900 mb-2">Access Denied</h2>
-            <p className="text-gray-600 mb-6">You don't have permission to access the admin panel.</p>
+            <p className="text-gray-600 mb-6">You don&apos;t have permission to access the admin panel</p>
             <Button onClick={() => window.location.href = '/'}>
               Return to Homepage
             </Button>

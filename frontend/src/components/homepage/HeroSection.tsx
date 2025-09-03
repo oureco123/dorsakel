@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
+import Image from 'next/image';
 
 const HeroSection = () => {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
@@ -18,8 +19,9 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden -mt-16">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
+        <Image 
           src="/images/dental-hearo-bg.png" 
+          alt="bg"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-800/60 to-slate-900/70"></div>
@@ -75,7 +77,7 @@ const HeroSection = () => {
           <div className="hidden lg:flex justify-center items-center">
             <div className="relative">
               <div className="w-96 h-96 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-500/20 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                <img 
+                <Image 
                   src="/images/dorsakel_smiley.png" 
                   alt="Dorsakel Logo" 
                   className="w-48 h-48 object-contain filter brightness-110"

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Menu, X, User, LogOut, ChevronDown } from 'lucide-react';
-
+import Image from 'next/image';
 interface NavbarProps {
   user?: {
     firstName: string;
@@ -58,7 +58,7 @@ const Navbar = ({ user = null, onLogin, onLogout }: NavbarProps) => {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-lg overflow-hidden transition-transform group-hover:scale-105">
-              <img 
+              <Image 
                 src="/images/logo.png" 
                 alt="Dorsakel Logo" 
                 className="w-full h-full object-contain"

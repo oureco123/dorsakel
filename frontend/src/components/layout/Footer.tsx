@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
-
+import Image from 'next/image';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -84,7 +84,7 @@ const Footer = () => {
           <div className="lg:col-span-1 space-y-6">
             <Link href="/" className="flex items-center gap-3 group">
               <div className="w-12 h-12 rounded-lg overflow-hidden transition-transform group-hover:scale-105">
-                <img 
+                <Image 
                   src="/images/logo.png" 
                   alt="Dorsakel Logo" 
                   className="w-full h-full object-contain filter brightness-110"

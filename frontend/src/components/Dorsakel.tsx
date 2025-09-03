@@ -55,20 +55,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   ? 'https://dorsakel.com/api' 
   : 'http://localhost:5000';
 
-  useEffect(() => {
-    // Check for stored token on mount
-    if (typeof window !== 'undefined') {
-      const storedToken = localStorage.getItem('dorsakel_token');
-      if (storedToken) {
-        setToken(storedToken);
-        getCurrentUser(storedToken);
-      } else {
-        setLoading(false);
-      }
-    } else {
-      setLoading(false);
-    }
-  }, []);
+  
 
   const getCurrentUser = async (authToken: string) => {
     try {
@@ -98,6 +85,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false);
     }
   };
+  useEffect(() => {
+    // Check for stored token on mount
+    if (typeof window !== 'undefined') {
+      const storedToken = localStorage.getItem('dorsakel_token');
+      if (storedToken) {
+        setToken(storedToken);
+        getCurrentUser(storedToken);
+      } else {
+        setLoading(false);
+      }
+    } else {
+      setLoading(false);
+    }
+  }, [getCurrentUser]); // Add getCurrentUser to dependencies
 
   // In Dorsakel.tsx - UPDATE YOUR LOGIN FUNCTION:
 const login = async (email: string, password: string) => {
@@ -484,7 +485,7 @@ export const AuthForm: React.FC = () => {
 
 // Main Dashboard Component
 export const Dashboard: React.FC = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   if (!user) return null;
 

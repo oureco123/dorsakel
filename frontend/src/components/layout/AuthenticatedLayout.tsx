@@ -32,7 +32,8 @@ const AuthenticatedLayout = ({
   const navbarUser = user ? {
     firstName: user.profile.firstName,
     lastName: user.profile.lastName,
-    subscriptionType: user.subscriptionType
+    subscriptionType: user.subscriptionType,
+    role: user.role as 'USER' | 'ADMIN' | 'SUPER_ADMIN'
   } : null;
 
   return (

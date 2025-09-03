@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { User, Lock, Mail, Eye, EyeOff, Crown, Stethoscope, BookOpen, Brain, BarChart3, LogOut, AlertCircle, CheckCircle } from 'lucide-react';
+import { User, Lock, Mail, Eye, EyeOff, Crown, BookOpen, Brain, BarChart3, AlertCircle, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 // Types
 interface User {
